@@ -405,13 +405,13 @@ end
   }
 
   
-// To analyse write operation
+// To analyse write operation under normal condition
   cross_rst_wr : cross fif.rst, fif.wr_en {
     ignore_bins unused_rst = binsof (fif.rst) intersect {1};
     ignore_bins unused_wr = binsof (fif.wr_en) intersect {0};
   }
   
-// To analyse read operation
+// To analyse read operation under normal condition
   cross_rst_rd : cross fif.rst, fif.rd_en {
     ignore_bins unused_rst = binsof (fif.rst) intersect {1};
     ignore_bins unused_rd = binsof (fif.rd_en) intersect {0};
