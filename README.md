@@ -6,11 +6,6 @@
 
 **Testbench Result**
 
-![image](https://github.com/user-attachments/assets/9e6690f0-ea36-4a95-8ba1-74c87ee8efe6)
 
-
-
-![image](https://github.com/user-attachments/assets/2168b2b4-e208-48de-be5b-880c3af54d0d)
 
 **Simulation Waveform**
-![Uploading image.png…]()
