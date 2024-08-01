@@ -50,6 +50,7 @@ always@ (posedge clk, posedge rst)
 if (rst == 1'b1)
 begin
 rd_ptr <= 0;
+data_out <=0;
 end
 
 else if ((rd_en == 1'b1) && (!empty) )
@@ -84,6 +85,7 @@ endcase
 end
 
 endmodule
+
 
 
 interface FIFO_intf;
