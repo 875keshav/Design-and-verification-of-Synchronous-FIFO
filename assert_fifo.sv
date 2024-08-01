@@ -25,7 +25,6 @@ RST_2: assert property(@(posedge clk) rst |-> (full==1'b0 && empty==1'b1));
      
         EMPTY_2:  assert property (@(posedge clk) disable iff(rst) $rose(empty) |=> ($stable(Syn_FIFO.rd_ptr) or (Syn_FIFO.rd_ptr ==0 ))[*1:$] ##1 !empty);
        
-          
  
   
 //3.Write+Read pointer behavior with rd and wr signal
@@ -56,8 +55,7 @@ RST_2: assert property(@(posedge clk) rst |-> (full==1'b0 && empty==1'b1));
       assert final (!$isunknown(rd));
       assert final (!$isunknown(din));
     end
- 
- 
+            
             
 ///5. Data must match
 property p1;
@@ -70,4 +68,16 @@ endproperty
 
 A1: assert property ( @(posedge clk) disable iff(rst) p1);
   
+  
+//6. Ensure data_out is 0 after reset
+DATA_AFTER_RESET: assert property (@(posedge clk) rst |-> (dout == 0));
+
+  
+//7. Write pointer wraps around correctly
+WPTR_WRAP: assert property (@(posedge clk) disable iff(rst) (wr && !full && Syn_FIFO.wr_ptr == 15) |-> ##1 (Syn_FIFO.wr_ptr == 0)) ;
+
+//8. Read pointer wraps around correctly
+RPTR_WRAP: assert property (@(posedge clk) disable iff(rst) (rd && !empty && Syn_FIFO.rd_ptr == 15) |-> ##1 (Syn_FIFO.rd_ptr == 0));
+
+
 endmodule
